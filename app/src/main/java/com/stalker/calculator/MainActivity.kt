@@ -117,7 +117,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewBinding.btnBackspace.setOnClickListener{
-            TODO()
+            var currentInput : String = viewBinding.input.text.toString()
+            if (currentInput.isNotEmpty()) {
+                viewBinding.input.text = currentInput.substring(0, currentInput.length - 1)
+                input = currentInput.substring(0, currentInput.length - 1)
+            }
         }
 
 
