@@ -5,7 +5,9 @@ import android.os.Bundle
 import com.stalker.calculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     private  lateinit var viewBinding : ActivityMainBinding
+    private var input = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -17,82 +19,101 @@ class MainActivity : AppCompatActivity() {
     private fun allowuUserToGiveInput() {
         viewBinding.btnC.setOnClickListener {
             viewBinding.input.text = "0"
+            input = ""
         }
 
         viewBinding.btnOpenBracket.setOnClickListener{
-            viewBinding.input.text = "("
+            input = "$input("
+            viewBinding.input.text = input
         }
 
         viewBinding.btnCloseBracket.setOnClickListener{
-            viewBinding.input.text = ")"
+            input = "$input)"
+            viewBinding.input.text = input
         }
 
         viewBinding.btnMul.setOnClickListener{
-            viewBinding.input.text = "*"
+            input = "$input*"
+            viewBinding.input.text = input
         }
 
         viewBinding.btnAc.setOnClickListener{
             viewBinding.input.text = "0"
             viewBinding.tvResult.text = "0"
+            input = ""
 
         }
 
         viewBinding.btnRoot.setOnClickListener{
-            viewBinding.input.text = "√"
+            input = "$input√"
+            viewBinding.input.text = input
         }
 
         viewBinding.btnPercentage.setOnClickListener{
-            viewBinding.input.text = "%"
+            input = "$input%"
+            viewBinding.input.text = input
         }
 
         viewBinding.btnDivide.setOnClickListener{
-            viewBinding.input.text = "/"
+            input = "$input/"
+            viewBinding.input.text = input
         }
 
         viewBinding.btn7.setOnClickListener{
-            viewBinding.input.text = "7"
+            input += "7"
+            viewBinding.input.text = input
         }
 
         viewBinding.btn8.setOnClickListener{
-            viewBinding.input.text = "8"
+            input += "8"
+            viewBinding.input.text = input
         }
 
         viewBinding.btn9.setOnClickListener{
-            viewBinding.input.text = "9"
+            input += "9"
+            viewBinding.input.text = input
         }
 
         viewBinding.btn6.setOnClickListener{
-            viewBinding.input.text = "6"
+            input += "6"
+            viewBinding.input.text = input
         }
 
         viewBinding.btn5.setOnClickListener{
-            viewBinding.input.text = "5"
+            input += "5"
+            viewBinding.input.text = input
         }
 
         viewBinding.btn4.setOnClickListener{
-            viewBinding.input.text = "4"
+            input += "4"
+            viewBinding.input.text = input
         }
 
         viewBinding.btn3.setOnClickListener{
-            viewBinding.input.text = "3"
+            input += "3"
+            viewBinding.input.text = input
         }
 
         viewBinding.btn2.setOnClickListener{
-            viewBinding.input.text = "2"
+            input += "2"
+            viewBinding.input.text = input
         }
 
 
         viewBinding.btn1.setOnClickListener{
-            viewBinding.input.text = "1"
+            input += "1"
+            viewBinding.input.text = input
         }
 
 
         viewBinding.btn0.setOnClickListener{
-            viewBinding.input.text = "0"
+            input += "0"
+            viewBinding.input.text = input
         }
 
         viewBinding.btnDot.setOnClickListener{
-            viewBinding.input.text = "."
+            input += "."
+            viewBinding.input.text = input
         }
 
         viewBinding.btnBackspace.setOnClickListener{
@@ -101,11 +122,13 @@ class MainActivity : AppCompatActivity() {
 
 
         viewBinding.btnMinus.setOnClickListener{
-            viewBinding.input.text = "-"
+            input += "-"
+            viewBinding.input.text = input
         }
 
         viewBinding.btnPlus.setOnClickListener{
-            viewBinding.input.text = "+"
+            input += "+"
+            viewBinding.input.text = input
         }
 
         viewBinding.btnEqual.setOnClickListener{
