@@ -1,8 +1,13 @@
 package com.stalker.calculator
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.stalker.calculator.databinding.ActivityMainBinding
+import org.mozilla.javascript.Context
+import org.mozilla.javascript.Scriptable
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -116,14 +121,18 @@ class MainActivity : AppCompatActivity() {
             viewBinding.input.text = input
         }
 
+        /**
+         * Used concept of substring and updated the new value of "input"
+         */
+
+
         viewBinding.btnBackspace.setOnClickListener{
-            var currentInput : String = viewBinding.input.text.toString()
+            val currentInput : String = viewBinding.input.text.toString()
             if (currentInput.isNotEmpty()) {
                 viewBinding.input.text = currentInput.substring(0, currentInput.length - 1)
                 input = currentInput.substring(0, currentInput.length - 1)
             }
         }
-
 
         viewBinding.btnMinus.setOnClickListener{
             input += "-"
@@ -136,12 +145,34 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewBinding.btnEqual.setOnClickListener{
-            TODO()
+//            val stringInput : String =  viewBinding.input.text.toString()
+//            getResult(stringInput)
+            getResult(input)
         }
 
         viewBinding.btnDev.setOnClickListener{
-            TODO()
+            val url = "https://github.com/CodeXstalker"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
         }
 
     }
+
+    private fun getResult(data : String) {
+        try {
+            val context: Context = Context.enter()
+            context.optimizationLevel = -1
+            val scriptable: Scriptable = context.initStandardObjects()
+            var finalResult = context.evaluateString(scriptable, data, "Javascript", 1, null).toString()
+            if (finalResult.endsWith(".0")) {
+                finalResult = finalResult.replace(".0", "")
+            }
+            viewBinding.tvResult.text = finalResult
+        } catch (e: Exception) {
+            viewBinding.tvResult.text = "Err"
+        }
+    }
+
+
+
 }
